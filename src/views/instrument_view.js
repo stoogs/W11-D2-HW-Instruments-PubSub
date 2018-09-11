@@ -7,11 +7,7 @@ const InstrumentView = function(){
 
 InstrumentView.prototype.bindEvents = function(instruments){
     let dropDownItems = instruments.instrumentFamilies.map(x => x.name); //make new array of adding each element
-    console.log(instruments);
-    console.log(dropDownItems);
-
     let addDropDownDOM = document.getElementById("instrument-families");
-    console.log(dropDownItems.length);
 
     for(let i = 0; i < dropDownItems.length; i++) {
         let item = dropDownItems[i];
@@ -22,6 +18,9 @@ InstrumentView.prototype.bindEvents = function(instruments){
         addDropDownDOM.appendChild(instrumentForMenu)
     }
 
+    const selectedElement = document.querySelector('select#instrument-families');
+    PubSub.publish('InstrumentView:selected', selectedElement);
+    //console.log(selectedElement)
 }
 
 
